@@ -48,12 +48,14 @@ pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-### Step 7: Chroot
+### Step 7: Time
+```
+timedatectl list-timezones
+
+timedatectl set-timezone "TIMEZONE"
+```
+
+### Step 8: Chroot
 ```
 arch-chroot /mnt
-```
-
-### Step 8: Time
-```
-
 ```
