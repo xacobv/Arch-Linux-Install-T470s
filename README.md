@@ -63,9 +63,9 @@ hwclock --systohc
 
 ### Step 9: Localization
 ```
-locale-gen
+nano /etc/locale.gen
 
-nano /etc/locale.conf
+locale-gen
 ```
 
 ### Step 10: Network Configuration
