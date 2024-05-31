@@ -20,4 +20,11 @@ Delete all partions and create 3 partions as follows:
 Write: YES
 ```
 
-### Step 3: 
+### Step 3: Format the partitions
+```
+mkfs.fat -F 32 /dev/nvme0n1p1
+
+mkswap /dev/nvme0n1p2
+
+mkfs.ext4 /dev/nvme0n1p3
+```
