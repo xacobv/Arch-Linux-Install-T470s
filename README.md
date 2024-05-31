@@ -41,7 +41,7 @@ mount /dev/nvme0n1p3/mnt
 ### Step 5: Install Essential Packages
 ```
 pacstrap -K /mnt base linux linux-firmware
-pacstrap /mnt nano networkmanager grub sudo
+pacstrap /mnt nano networkmanager grub sudo intel-ucode
 ```
 
 ### Step 6: Fstab
@@ -66,14 +66,36 @@ hwclock --systohc
 nano /etc/locale.gen
 
 locale-gen
+
+nano /etc/locale.conf
+
+type "LANG=en_US.UTF-8"
 ```
 
 ### Step 10: Network Configuration
 ```
-nano /etc/hostname
+nano /etc/hostname (Type in desired name)
+
+nano /etc/hosts
+  127.0.0.1        localhost
+  ::1              localhost
+  127.0.1.1        "HOSTNAME"
+
+systemctl enable NetworkManager
 ```
 
 ### Step 11: Root Password
 ```
 passwd
 ```
+
+### Step 12: Create User w/ Password
+```
+useradd -m -G wheel "NAME"
+
+passwd "NAME"
+
+nano /etc/sudoers
+  Uncomment # %wheel ALL=(ALL) ALL
+```
+
