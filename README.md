@@ -41,7 +41,7 @@ mount /dev/nvme0n1p3/mnt
 ### Step 5: Install Essential Packages
 ```
 pacstrap -K /mnt base linux linux-firmware
-pacstrap /mnt nano networkmanager grub sudo intel-ucode
+pacstrap /mnt nano networkmanager grub sudo intel-ucode efibootmgr
 ```
 
 ### Step 6: Fstab
@@ -96,6 +96,16 @@ useradd -m -G wheel "NAME"
 passwd "NAME"
 
 nano /etc/sudoers
-  Uncomment # %wheel ALL=(ALL) ALL
+  Uncomment "%wheel ALL=(ALL) ALL"
+```
+### Step 13: tt
+```
+mkdir /boot/efi
+
+mount /dev/sda1 /boot/efi
 ```
 
+### Step 14: Grub
+```
+grub-install --target=x86_64-efi --bootloader-id=grub
+```
