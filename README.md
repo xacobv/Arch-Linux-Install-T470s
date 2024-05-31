@@ -48,14 +48,19 @@ pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-### Step 7: Time
-```
-timedatectl list-timezones
-
-timedatectl set-timezone "TIMEZONE"
-```
-
-### Step 8: Chroot
+### Step 7: Chroot
 ```
 arch-chroot /mnt
+```
+
+### Step 8: Time
+```
+ln -sf /usr/share/zoneinfo/"REGION"/"CITY" /etc/localtime
+
+hwclock --systohc
+```
+
+### Step 9: Localization
+```
+locale-gen
 ```
