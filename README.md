@@ -64,7 +64,7 @@ hwclock --systohc
 
 ### Step 9: Install required packages
 ```
-pacman -S nano sudo networkmanager network-manager-applet grub dosfstools linux-headers intel-ucode efibootmgr
+pacman -S nano sudo networkmanager network-manager-applet grub dosfstools linux-headers intel-ucode efibootmgr reflector
 ```
 
 ### Step 10: Localization
@@ -85,7 +85,7 @@ nano /etc/hostname (Type in desired name)
 nano /etc/hosts
   127.0.0.1        localhost
   ::1              localhost
-  127.0.1.1        "HOSTNAME"
+  127.0.1.1        "HOSTNAME" or myhost.localdomain myhost
 
 systemctl enable NetworkManager
 ```
@@ -95,23 +95,37 @@ systemctl enable NetworkManager
 passwd
 ```
 
-### Step 12: Create User w/ Password
+### Step 12: Install Grub and Bootloader
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+bootctl install
+```
+
+### Step 13: Create User w/ Password
 ```
 useradd -m -G wheel "NAME"
 
 passwd "NAME"
 
 nano /etc/sudoers
-  Uncomment "%wheel ALL=(ALL) ALL"
-```
-### Step 13: tt
-```
-mkdir /boot/efi
-
-mount /dev/sda1 /boot/efi
+  Uncomment "%wheel ALL=(ALL)ALL"
 ```
 
-### Step 14: Grub
+### Step 14: Install KDE
 ```
-grub-install --target=x86_64-efi --bootloader-id=grub
+pacman -S plasma-meta kde-applications sddm
+
+systemctl enable sddm
+```
+
+### Step 15: Finalize and Boot into system
+```
+exit
+
+umount -R /mnt
+
+reboot
 ```
