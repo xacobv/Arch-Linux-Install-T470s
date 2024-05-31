@@ -43,3 +43,17 @@ mount /dev/nvme0n1p3/mnt
 pacstrap -K /mnt base linux linux-firmware
 ```
 
+### Step 6: Fstab
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+### Step 7: Chroot
+```
+arch-chroot /mnt
+```
+
+### Step 8: Time
+```
+
+```
