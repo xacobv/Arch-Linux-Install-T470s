@@ -31,10 +31,8 @@ mkswap /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
 ```
 
-### Step 4: Mount the file systemss
+### Step 4: Mount the file systems
 ```
-mount --mkdir /dev/nvme0n1p1 /mnt/boot
-
 swapon /dev/nvme0n1p2
 
 mount /dev/nvme0n1p3 /mnt
@@ -85,7 +83,7 @@ nano /etc/hostname (Type in desired name)
 nano /etc/hosts
   127.0.0.1        localhost
   ::1              localhost
-  127.0.1.1        "HOSTNAME" or myhost.localdomain myhost
+  127.0.1.1        "HOSTNAME"
 
 systemctl enable NetworkManager
 ```
@@ -95,7 +93,17 @@ systemctl enable NetworkManager
 passwd
 ```
 
-### Step 12: Install Grub and Bootloader
+### Step 12: Create User w/ Password and Enable Sudo Privelleges
+```
+useradd -m -G wheel "NAME"
+
+passwd "NAME"
+
+nano /etc/sudoers
+  Uncomment "%wheel ALL=(ALL) ALL"
+```
+
+### Step 13: Install Grub and Bootloader
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
@@ -104,15 +112,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 bootctl install
 ```
 
-### Step 13: Create User w/ Password
-```
-useradd -m -G wheel "NAME"
-
-passwd "NAME"
-
-nano /etc/sudoers
-  Uncomment "%wheel ALL=(ALL)ALL"
-```
 
 ### Step 14: Install KDE
 ```
