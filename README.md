@@ -110,20 +110,18 @@ mkdir /boot/efi
 mount /dev/nvme0n1p1 /boot/efi
 ```
 
-### Step 14: Install Grub and Bootloader
+### Step 14: Install and Configure Grub
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
 grub-mkconfig -o /boot/grub/grub.cfg
-
-bootctl install
 ```
 
-### Step 15: Install KDE
+### Step 15: Install Gnome and Enable It
 ```
-pacman -S plasma-meta kde-applications sddm
+pacman -S gnome
 
-systemctl enable sddm
+systemctl enable gdm
 ```
 
 ### Step 16: Finalize and Boot into system
