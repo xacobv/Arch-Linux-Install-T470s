@@ -41,7 +41,7 @@ mount /dev/nvme0n1p3/mnt
 ### Step 5: Install Essential Packages
 ```
 pacstrap -K /mnt base linux linux-firmware
-pacstrap /mnt nano networkmanager
+pacstrap /mnt nano networkmanager grub
 ```
 
 ### Step 6: Fstab
