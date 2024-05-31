@@ -103,7 +103,14 @@ nano /etc/sudoers
   Uncomment "%wheel ALL=(ALL) ALL"
 ```
 
-### Step 13: Install Grub and Bootloader
+### Step 13: Mount EFI File Partition
+```
+mkdir /boot/efi
+
+mount /dev/nvme0n1p1 /boot/efi
+```
+
+### Step 14: Install Grub and Bootloader
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
@@ -112,15 +119,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 bootctl install
 ```
 
-
-### Step 14: Install KDE
+### Step 15: Install KDE
 ```
 pacman -S plasma-meta kde-applications sddm
 
 systemctl enable sddm
 ```
 
-### Step 15: Finalize and Boot into system
+### Step 16: Finalize and Boot into system
 ```
 exit
 
