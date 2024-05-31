@@ -41,7 +41,7 @@ mount /dev/nvme0n1p3/mnt
 ### Step 5: Install Essential Packages
 ```
 pacstrap -K /mnt base linux linux-firmware
-pacstrap /mnt nano networkmanager grub
+pacstrap /mnt nano networkmanager grub sudo
 ```
 
 ### Step 6: Fstab
@@ -65,5 +65,15 @@ hwclock --systohc
 ```
 locale-gen
 
+nano /etc/locale.conf
+```
 
+### Step 10: Network Configuration
+```
+nano /etc/hostname
+```
+
+### Step 11: Root Password
+```
+passwd
 ```
