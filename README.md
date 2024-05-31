@@ -5,7 +5,7 @@
 iwctl --passphrase "PASSWORD" station wlan0 connect "WIFI-NETWORK NAME"
 ```
 
-### Step 2: Partition Disks
+### Step 2: Partition Disk
 ```
 cfdisk /dev/nvme0n1
 
@@ -28,3 +28,18 @@ mkswap /dev/nvme0n1p2
 
 mkfs.ext4 /dev/nvme0n1p3
 ```
+
+### Step 4: Mount the file system
+```
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+
+swapon /dev/nvme0n1p2
+
+mount /dev/nvme0n1p3/mnt
+```
+
+### Step 5: Install Essential Packages
+```
+pacstrap -K /mnt base linux linux-firmware
+```
+
